@@ -5,7 +5,7 @@ const directiveResolvers = {
     return next(source, args, context)
   },
 
-  isError: () => {
+  isErro: () => {
     return new Error('Isso é um erro gerado na diretiva')
   }
 }
