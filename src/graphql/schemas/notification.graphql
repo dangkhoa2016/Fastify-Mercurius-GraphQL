@@ -1,0 +1,7 @@
+type Notification {
+  message: String
+}
+
+type Subscription {
+  notification: Notification
+}

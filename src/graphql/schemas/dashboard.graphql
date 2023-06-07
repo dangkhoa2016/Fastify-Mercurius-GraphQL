@@ -1,0 +1,8 @@
+type Query {
+  counters: Dashboard @auth
+}
+
+type Dashboard {
+  users: Int
+  cats: Int
+}

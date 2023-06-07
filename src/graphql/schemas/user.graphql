@@ -1,0 +1,29 @@
+type Query {
+  users: [User]
+}
+
+input UserInput {
+  name: String
+  email: String
+  image: String
+}
+
+input AccountInput {
+  provider: String
+}
+
+type Mutation {
+  auth(user: UserInput, account: AccountInput): Auth
+}
+
+type User {
+  id: ID
+  name: String
+  email: String
+  image: String
+  role: String
+  status: Boolean
+  updated_at: timestamptz
+  created_at: timestamptz
+}
+
