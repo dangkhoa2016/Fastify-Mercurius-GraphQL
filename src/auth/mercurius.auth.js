@@ -11,7 +11,7 @@ module.exports = fp(async (app) => {
         identity: context.reply.request.headers['x-access-token']
       }
     },
-    async applyPolicy(auth, parent, args, context, info) {
+    async applyPolicy(auth, parent, args, context) {
 
       if (!context.auth.identity) {
 

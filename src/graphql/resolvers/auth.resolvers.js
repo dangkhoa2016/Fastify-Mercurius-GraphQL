@@ -2,7 +2,7 @@
 
 module.exports = {
   Mutation: {
-    login: async (parent, { email, password }, context) => {
+    login: async (_, { email, password }, context) => {
 
       const user = await context.app.knex('users')
         .where({ email: email, status: true })
@@ -28,7 +28,7 @@ module.exports = {
 
     },
 
-    change_password: async (parent, { password }, context) => {
+    change_password: async (_, { password }, context) => {
 
       await context.app.knex('users')
         .update({ password: context.app.bcrypt.encrypt(password) })

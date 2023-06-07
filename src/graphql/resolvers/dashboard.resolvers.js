@@ -2,7 +2,7 @@
 
 module.exports = {
   Query: {
-    counters: async (parent, { args }, context) => {
+    counters: async (_, __, context) => {
 
       try {
 

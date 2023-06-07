@@ -4,18 +4,18 @@ const fastify = require('fastify')
 
 const autoload = require('@fastify/autoload')
 
-const { join } = require('path')
+const { join, resolve } = require('path')
 
 const app = fastify({
   logger: true
 })
 
 app.register(autoload, {
-  dir: join(__dirname, 'src/plugins')
+  dir: join(resolve('src/plugins'))
 })
 
 app.register(autoload, {
-  dir: join(__dirname, 'src/auth')
+  dir: join(resolve('src/auth'))
 })
 
 app.listen({ port: 4000, host: '0.0.0.0' })

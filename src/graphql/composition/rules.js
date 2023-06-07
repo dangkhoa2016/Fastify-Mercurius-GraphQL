@@ -1,6 +1,6 @@
 'use strict'
 
-const hasRole = (role) => next => async (parent, args, context, info) => {
+const hasRole = (role) => next => (parent, args, context, info) => {
 
   if (!context.app.current_user || context.app.current_user.role.includes(role)) {
 

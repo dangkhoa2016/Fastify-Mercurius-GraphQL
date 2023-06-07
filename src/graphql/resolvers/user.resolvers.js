@@ -2,7 +2,7 @@
 
 module.exports = {
   Query: {
-    users: async (parent, { args }, context, info) => {
+    users: async (_, __, context) => {
       const users = await context.app.knex('users')
 
       context.app.pubsub.publish(context)

@@ -3,7 +3,7 @@
 module.exports = {
   Subscription: {
     notification: {
-      subscribe: async (parent, args, { pubsub }) => {
+      subscribe: async (_, __, { pubsub }) => {
         return await pubsub.subscribe('NOTIFICATION')
       }
     }

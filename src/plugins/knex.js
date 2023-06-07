@@ -5,6 +5,8 @@ const knex = require('knex')
 
 const { resolve } = require('path')
 
+const { env } = require('process')
+
 const knexfile = require(resolve('config/knexfile'))
 
 function plugin(app, opts, next) {
@@ -32,6 +34,6 @@ function plugin(app, opts, next) {
 }
 
 module.exports = fp(async (app) => {
-  app.register(fp(plugin), knexfile[process.env.NODE_ENV])
+  app.register(fp(plugin), knexfile[env.NODE_ENV])
 
 }, { name: 'knex' })
