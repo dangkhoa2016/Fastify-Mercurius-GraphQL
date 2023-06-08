@@ -8,7 +8,7 @@ const plugin = async (app, opts) => {
   app.decorate('crypto', {
     token: () => {
       return new Promise((resolve) => {
-        crypto.randomBytes(32, (error, data) => {
+        crypto.randomBytes(32, (_, data) => {
           resolve(data.toString('base64'))
         })
       })

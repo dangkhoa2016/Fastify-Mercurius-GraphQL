@@ -12,7 +12,7 @@ module.exports = {
   },
 
   Mutation: {
-    auth: async (parent, args, context) => {
+    auth: async (_, args, context) => {
 
       const knex = context.app.knex
 
