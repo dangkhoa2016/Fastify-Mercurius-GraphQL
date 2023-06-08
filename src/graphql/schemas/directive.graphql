@@ -1,1 +1,3 @@
 directive @auth on OBJECT | FIELD_DEFINITION
+
+directive @redact(find: String) on OBJECT | FIELD_DEFINITION

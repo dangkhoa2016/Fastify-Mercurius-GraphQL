@@ -8,20 +8,21 @@ const { resolve } = require('path')
 
 const { typeDefs, composedResolvers, loaders } = require(resolve('src/graphql/tools'))
 
-const { directiveResolvers } = require(resolve('src/graphql/directives'))
+const { redactionSchemaTransformer } = require(resolve('src/graphql/directives/redact'))
 
 const { makeExecutableSchema } = require('@graphql-tools/schema')
 
-const schema = makeExecutableSchema({
+const executableSchema = makeExecutableSchema({
   typeDefs,
-  resolvers: composedResolvers,
-  directiveResolvers
+  resolvers: composedResolvers
 })
+
+const schema = redactionSchemaTransformer(executableSchema)
 
 module.exports = fp(async (app) => {
   app.register(mercurius, {
     schema,
-    loaders: loaders,
+    loaders,
     subscription: true,
     graphiql: true
   })

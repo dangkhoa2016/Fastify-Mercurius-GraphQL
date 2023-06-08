@@ -1,7 +1,5 @@
-directive @isError on QUERY | OBJECT | FIELD | FIELD_DEFINITION
-
 type Query {
-  users: [User] @isError
+  users: [User]
 }
 
 input UserInput {
@@ -20,8 +18,8 @@ type Mutation {
 
 type User {
   id: ID
-  name: String
-  email: String
+  name: String @redact(find: "upper")
+  email: String @redact(find: "lower")
   image: String
   role: String
   status: Boolean
