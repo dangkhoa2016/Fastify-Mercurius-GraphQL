@@ -6,7 +6,7 @@ const mercurius = require('mercurius')
 
 const { resolve } = require('path')
 
-const { typeDefs, composedResolvers, loaders } = require(resolve('src/graphql/tools'))
+const { typeDefs, composedResolvers, loaders } = require(resolve('src/graphql/merge'))
 
 const { redactionSchemaTransformer } = require(resolve('src/graphql/directives'))
 
