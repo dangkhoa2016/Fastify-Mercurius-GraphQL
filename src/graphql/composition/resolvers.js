@@ -8,4 +8,4 @@ const resolversComposition = {
   'Query.users': [hasRole('admin')]
 }
 
-module.exports = resolversComposition
+module.exports = resolversComposition;

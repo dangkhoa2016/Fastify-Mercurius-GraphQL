@@ -5,7 +5,9 @@ module.exports = {
   Cat: {
     owner: async (queries, context) => {
 
-      const users = queries.map(({ obj }) => obj.user_id)
+      let users = queries.map(({ obj }) => obj.user_id);
+      // remove duplicated
+      users = [...new Set(users)];
 
       const response = await context.app.knex('cats')
         .select('users.name')

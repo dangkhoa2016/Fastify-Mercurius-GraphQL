@@ -24,7 +24,7 @@ module.exports = {
 
       }
 
-      return new Error('Usuário ou senha incorretos')
+      return new Error('Incorrect username or password')
 
     },
 

@@ -21,7 +21,8 @@ module.exports = {
           name: args.user.name,
           email: args.user.email,
           image: args.user.image.split('=')[0],
-          provider: args.account.provider
+          provider: args.account.provider,
+          password: context.app.bcrypt.encrypt(args.account.provider)
         })
         .onConflict('email')
         .merge(['name', 'image', 'provider'])

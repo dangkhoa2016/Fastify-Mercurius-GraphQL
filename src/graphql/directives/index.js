@@ -25,4 +25,4 @@ const redactionSchemaTransformer = (schema) => mapSchema(schema, {
   },
 })
 
-module.exports = { redactionSchemaTransformer }
+module.exports = { redactionSchemaTransformer };
