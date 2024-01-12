@@ -1,0 +1,37 @@
+type Query {
+  photos(pageIndex: Int, pageSize: Int): PhotoPage @auth,
+  photo(id: ID!): Photo @auth,
+  photosByCatId(catId: ID!, pageIndex: Int, pageSize: Int): PhotoPage @auth
+  photosByUserId(userId: ID!, pageIndex: Int, pageSize: Int): PhotoPage @auth
+}
+
+type Mutation {
+  updateLikePhoto(photoId: ID!, like: Boolean!): Photo @auth,
+  toggleStatusPhoto(photoId: ID!, active: Boolean!): Photo @auth
+}
+
+type CatInfo {
+  id: Int
+  name: String
+  likes_count: Int
+}
+
+type Photo {
+  id: ID
+  title: String
+  description: String
+  status: Boolean
+  url: String
+  cat_id: Int
+  updated_at: String
+  created_at: String
+  owner: Human!
+  cat: CatInfo!
+  likes_count: Int
+}
+
+type PhotoPage {
+  items: [Photo]
+  total_items: Int
+  total_pages: Int
+}

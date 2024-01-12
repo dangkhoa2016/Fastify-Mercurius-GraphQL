@@ -1,9 +1,22 @@
 type Mutation {
-  login(email: String!, password: String!): Auth!
-  change_password(password: String): Boolean @auth
+  login(email: String!, password: String!): Auth!,
+  changePassword(password: String!): Boolean @auth,
+  decryptUserToken(userToken: String!): Auth,
 }
 
 type Auth {
-  user: User!
+  user: LoginResult!
   token: String!
+  userToken: String!
+}
+
+type LoginResult {
+  id: ID!,
+  name: String @redact(find: "upper"),
+  email: String @redact(find: "lower"),
+  image: String,
+  role: String!,
+  status: Boolean,
+  updated_at: timestamptz,
+  created_at: timestamptz
 }

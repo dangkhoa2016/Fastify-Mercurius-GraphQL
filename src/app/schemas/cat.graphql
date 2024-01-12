@@ -1,17 +1,44 @@
 type Query {
-  cats: [Cat] @auth
+  cats(pageIndex: Int, pageSize: Int): CatPage @auth,
+  cat(id: ID!): Cat @auth,
+  catsByUserId(userId: ID!, pageIndex: Int, pageSize: Int): CatPage @auth
+}
+
+type Mutation {
+  updateLikeCat(catId: ID!, like: Boolean!): Cat @auth,
+  toggleStatusCat(catId: ID!, active: Boolean!): Cat @auth
 }
 
 type Human {
+  id: ID
   name: String
+  likes_count: Int
 }
 
 type Cat {
   id: ID
   name: String
   image: String
+  description: String
+  coat_color: String
+  eye_color: String
+  breed: String
+  origin: String
+  weight: Float
+  height: Float
   user_id: Int
+  status: Boolean
+  gender: String
   updated_at: String
   created_at: String
+  birthday: String
   owner: Human!
+  likes_count: Int
+  photos_count: Int
+}
+
+type CatPage {
+  items: [Cat]
+  total_items: Int
+  total_pages: Int
 }

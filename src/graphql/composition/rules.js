@@ -6,7 +6,7 @@ const hasRole = (role) => next => (parent, args, context, info) => {
     return next(parent, args, context, info);
   }
 
-  throw new Error('You are not authorized to do this action')
+  throw new Error('You are not authorized to do this action.')
 
 }
 

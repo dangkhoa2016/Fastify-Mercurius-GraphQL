@@ -1,21 +1,37 @@
 'use strict'
+const helpers = require('../../libs/helpers');
 
 module.exports = {
-
   Cat: {
-    owner: async (queries, context) => {
+    owner: (users, { app }) => {
+      return helpers.fetchOwners(app.knex, {
+        tableName: 'cats', idField: 'user_id',
+        relatedTableName: 'users', records: users,
+        selectFields: ['users.id', 'users.name', 'users.likes_count']
+      });
+    },
+    photos_count: async (cats, { app, current_user }) => {
+      const { knex } = app;
 
-      let users = queries.map(({ obj }) => obj.user_id);
-      // remove duplicated
-      users = [...new Set(users)];
+      const filter = { };
+      const users = await knex('cats').select('user_id').whereIn('id', cats.map(({ obj }) => obj.id)).distinct();
+      // console.log('users', users);
+      const is_current_user_request = current_user && users.length === 1 && current_user.id.toString() === users[0].user_id.toString();
+      if (!current_user || (current_user.role !== 'admin' && !is_current_user_request))
+        filter['photos.status'] = true;
 
-      const response = await context.app.knex('cats')
-        .select('users.name')
-        .join('users', 'users.id', 'cats.user_id')
-        .whereIn('cats.user_id', users)
-        .orderBy('cats.id', 'asc')
+      const result = await helpers.getCounts(knex, {
+        items: cats, filter,
+        groupFieldName: 'catId',
+        foreignKeyName: 'cat_id',
+        tableName: 'cats',
+        countField: 'photos.id',
+        relatedTableName: 'photos',
+      });
 
-      return response
+      return cats.map(({ obj }) => {
+        return (result.find(record => record[obj.id]) ?? {})[obj.id] ?? 0;
+      });
     }
   }
 }

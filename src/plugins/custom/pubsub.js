@@ -1,8 +1,9 @@
-'use script'
+'use strict';
 
 const fp = require('fastify-plugin')
 
-module.exports = fp(async (app) => {
+module.exports = fp((app, opts, done) => {
+
   app.decorate('pubsub', {
     publish: async (context) => {
       await context.pubsub.publish({
@@ -12,5 +13,8 @@ module.exports = fp(async (app) => {
         }
       })
     }
-  })
+  });
+
+  done();
+
 })

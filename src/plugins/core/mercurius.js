@@ -17,15 +17,18 @@ const directiveTransformers = [redactionSchemaTransformer]
 const executableSchema = makeExecutableSchema({
   typeDefs,
   resolvers: composedResolvers
-})
+});
 
-const schema = directiveTransformers.reduce((curSchema, transformer) => transformer(curSchema), executableSchema)
+const schema = directiveTransformers.reduce((curSchema, transformer) => transformer(curSchema), executableSchema);
 
-module.exports = fp(async (app) => {
+module.exports = fp((app, opts, done) => {
+
   app.register(mercurius, {
     schema,
     loaders,
     subscription: true,
     graphiql: true
-  })
-})
+  });
+  
+  done();
+});

@@ -1,24 +1,44 @@
-'use strict'
+'use strict';
+const helpers = require('../../libs/helpers');
 
 module.exports = {
   Query: {
-    counters: async (_, __, context) => {
+    counters: (_, __, { app, current_user }) => {
+      return helpers.fetchCounters(app.knex, current_user && current_user.role === 'admin');
+    },
 
-      try {
+    userFields: (_, __, context) => {
+      const { app: { graphql: { schema } } } = context;
+      const availableFields = helpers.getFields('User', schema);
+      return availableFields;
+    },
 
-        const knex = context.app.knex
+    catFields: (_, __, context) => {
+      const { app: { graphql: { schema } } } = context;
+      const availableFields = helpers.getFields('Cat', schema);
+      return availableFields;
+    },
 
-        const [counters] = await knex.from(knex.raw('cats c, users u'))
-          .countDistinct('u.id as users')
-          .countDistinct('c.id as cats')
+    photoFields: (_, __, context) => {
+      const { app: { graphql: { schema } } } = context;
+      const availableFields = helpers.getFields('Photo', schema);
+      return availableFields;
+    },
 
-        return counters
+    catsGroupByUsers: (_, __, { app, current_user }) => {
+      return helpers.fetchGroupedByField(app.knex, {
+        isAdmin: current_user && current_user.role === 'admin',
+        tableName: 'cats', joinTable: 'users',
+        joinKey: 'users.id', referenceKey: 'user_id'
+      });
+    },
 
-      } catch (e) {
-
-        return new Error(e)
-      }
-
-    }
-  }
-}
+    photosGroupByCats: (_, __, { app, current_user }) => {
+      return helpers.fetchGroupedByField(app.knex, {
+        isAdmin: current_user && current_user.role === 'admin',
+        tableName: 'photos', joinTable: 'cats',
+        joinKey: 'cats.id', referenceKey: 'cat_id'
+      });
+    },
+  },
+};

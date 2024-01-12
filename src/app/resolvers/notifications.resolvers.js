@@ -3,9 +3,9 @@
 module.exports = {
   Subscription: {
     notification: {
-      subscribe: async (_, __, { pubsub }) => {
-        return await pubsub.subscribe('NOTIFICATION')
-      }
-    }
-  }
+      subscribe: (_, __, { pubsub }) => {
+        return pubsub.subscribe('NOTIFICATION')
+      },
+    },
+  },
 }

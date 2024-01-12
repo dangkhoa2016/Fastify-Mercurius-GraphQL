@@ -1,5 +1,8 @@
+
 type Query @deny {
-  users: [User]
+  users(pageIndex: Int, pageSize: Int): UserPage @auth,
+  user(id: ID!): User @auth,
+  topUsersByLikeCount(pageSize: Int): [User] @auth
 }
 
 input UserInput {
@@ -13,7 +16,10 @@ input AccountInput {
 }
 
 type Mutation {
-  auth(user: UserInput, account: AccountInput): Auth
+  auth(user: UserInput, account: AccountInput): Auth,
+  follow(userId: ID!, followerId: ID): User @auth,
+  unfollow(userId: ID!, followerId: ID): User @auth,
+  toggleStatusUser(userId: ID!, active: Boolean!): User @auth
 }
 
 type User {
@@ -25,4 +31,29 @@ type User {
   status: Boolean
   updated_at: timestamptz
   created_at: timestamptz
+  cats_count: Int
+  photos_count: Int
+  likes_count: Int
+  followers_count: Int
+  followed: Boolean
+  country: String
+  twitter_url: String
+  facebook_url: String
+  instagram_url: String
+  linkedin_url: String
+  github_url: String
+  website_url: String
+  pinterest_url: String
+  youtube_url: String
+  bio: String
+  job_title: String
+  phone_number: String
+  location: String
+  gender: String
+}
+
+type UserPage {
+  items: [User]
+  total_items: Int
+  total_pages: Int
 }

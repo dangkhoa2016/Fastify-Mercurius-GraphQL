@@ -33,7 +33,10 @@ function plugin(app, opts, next) {
   }
 }
 
-module.exports = fp(async (app) => {
+module.exports = fp((app, opts, done) => {
+
   app.register(fp(plugin), knexfile[env.NODE_ENV])
+
+  done();
 
 }, { name: 'knex' })

@@ -5,7 +5,8 @@ const bcrypt = require('bcrypt');
 const fp = require('fastify-plugin')
 
 
-const plugin = async (app, opts) => {
+const plugin = (app, opts, done) => {
+
   const salt = bcrypt.genSaltSync(opts.salt)
 
   app.decorate('bcrypt', {
@@ -17,8 +18,14 @@ const plugin = async (app, opts) => {
     }
   });
 
+	done();
+
 }
 
-module.exports = fp(async (app) => {
+module.exports = fp((app, opts, done) => {
+
   app.register(fp(plugin), { salt: 10 })
+
+  done();
+
 })

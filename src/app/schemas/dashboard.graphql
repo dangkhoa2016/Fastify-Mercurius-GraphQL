@@ -1,8 +1,27 @@
 type Query {
-  counters: Dashboard @auth
+  counters: Dashboard @auth,
+  userFields: [String!],
+  catFields: [String!] @auth,
+  photoFields: [String!] @auth,
+  catsGroupByUsers: [GroupByUsers] @auth,
+  photosGroupByCats: [GroupByCats] @auth
 }
 
 type Dashboard {
   users: Int
   cats: Int
+  photos: Int
+  countries: Int
+}
+
+type GroupByUsers {
+  id: ID
+  name: String
+  count: Int
+}
+
+type GroupByCats {
+  id: ID
+  name: String
+  count: Int
 }
