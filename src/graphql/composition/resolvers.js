@@ -1,11 +1,11 @@
-'use strict'
+'use strict';
 
-const { resolve } = require('path')
+const { resolve } = require('path');
 
-const { hasRole } = require(resolve('src/graphql/composition/rules'))
+const { hasRole } = require(resolve('src/graphql/composition/rules'));
 
 const resolversComposition = {
-  'Query.users': [hasRole('admin')]
-}
+	'Query.users': [hasRole('admin')],
+};
 
 module.exports = resolversComposition;
