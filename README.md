@@ -1,5 +1,7 @@
 # Fastify Mercurius GraphQL
 
+> 🌐 Language / Ngôn ngữ: **English** | [Tiếng Việt](README.vi.md)
+
 ## Introduction
 This is a sample project illustrating the integration of Fastify and Mercurius GraphQL to develop a simple cats sharing network application. This project leverages cutting-edge technologies to deliver a robust and efficient solution.
 
@@ -14,6 +16,12 @@ This is a sample project illustrating the integration of Fastify and Mercurius G
 - **Like/Unlike Cats**: Interact with adorable cat profiles by liking or unliking them.
 - **Like/Unlike Photos**: Engage with captivating cat photos through likes and unlikes.
 - **Admin Controls**: Administrators can manage user accounts, cat profiles, and uploaded photos by enabling or disabling them.
+
+## Related Frontend Projects
+This backend server serves the following frontend projects:
+- [GraphQL-Vue-With-Route](https://github.com/dangkhoa2016/GraphQL-Vue-With-Route) - Vue.js 3 frontend with routing
+- [GraphQL-Vue-Without-Route](https://github.com/dangkhoa2016/GraphQL-Vue-Without-Route) - Vue.js 3 frontend without routing
+- [GraphQL-Vue-With-Route-Vite](https://github.com/dangkhoa2016/GraphQL-Vue-With-Route-Vite) - Vue.js 3 frontend with routing and Vite
 
 ### Prerequisites
 Ensure you have the following installed before proceeding:
@@ -33,4 +41,4 @@ This project is licensed under the [MIT License](LICENSE). For more details, ref
 
 ### Authors
 - Original fork by **Yuri Fontella**: [YuriFontella](https://github.com/YuriFontella)
-- Maintained by **Dang Khoa**: [dangkhoa2016](https://github.com/dangkhoa2016)
+- Maintained by **Đăng Khoa**: [dangkhoa2016](https://github.com/dangkhoa2016)
