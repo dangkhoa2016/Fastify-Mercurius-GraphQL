@@ -2,6 +2,9 @@
 	"name": "fastify-mercurius-graphql",
 	"version": "2.0.0",
 	"main": "app.js",
+	"engines": {
+    "node": ">=22.13.0"
+  },
 	"scripts": {
 		"start": "NODE_ENV=production node app.js",
 		"dev": "NODE_ENV=development nodemon app.js",
@@ -18,7 +21,7 @@
 		"sqlite",
 		"auth"
 	],
-	"author": "Yuri Fontella, Dang Khoa",
+	"author": "Yuri Fontella, Đăng Khoa",
 	"license": "ISC",
 	"dependencies": {
 		"@fastify/autoload": "^6.3.1",
